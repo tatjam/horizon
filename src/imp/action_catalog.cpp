@@ -1164,36 +1164,40 @@ const std::map<ActionToolID, ActionCatalogItem> action_catalog = {
 
         {{ActionID::MOVE_CURSOR_UP, ToolID::NONE},
          {"Move cursor up ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
-          ActionCatalogItem::FLAGS_DEFAULT}},
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
 
-        {{ActionID::MOVE_CURSOR_UP_FINE, ToolID::NONE},
+        {{ActionID::MOVE_CURSOR_FINE_UP, ToolID::NONE},
          {"Move cursor up fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
           ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
                   | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
 
         {{ActionID::MOVE_CURSOR_DOWN, ToolID::NONE},
          {"Move cursor down ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
-          ActionCatalogItem::FLAGS_DEFAULT}},
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
 
-        {{ActionID::MOVE_CURSOR_DOWN_FINE, ToolID::NONE},
+        {{ActionID::MOVE_CURSOR_FINE_DOWN, ToolID::NONE},
          {"Move cursor down fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
           ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
                   | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
 
         {{ActionID::MOVE_CURSOR_LEFT, ToolID::NONE},
          {"Move cursor left ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
-          ActionCatalogItem::FLAGS_DEFAULT}},
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
 
-        {{ActionID::MOVE_CURSOR_LEFT_FINE, ToolID::NONE},
+        {{ActionID::MOVE_CURSOR_FINE_LEFT, ToolID::NONE},
          {"Move cursor left fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
           ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
                   | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
 
         {{ActionID::MOVE_CURSOR_RIGHT, ToolID::NONE},
          {"Move cursor right ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
-          ActionCatalogItem::FLAGS_DEFAULT}},
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
 
-        {{ActionID::MOVE_CURSOR_RIGHT_FINE, ToolID::NONE},
+        {{ActionID::MOVE_CURSOR_FINE_RIGHT, ToolID::NONE},
          {"Move cursor right fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
           ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
                   | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
@@ -1239,7 +1243,10 @@ const std::vector<std::pair<ActionGroup, std::string>> action_group_catalog = {
 
 };
 
-#define ACTION_LUT_ITEM(x) {#x, ActionID::x}
+#define ACTION_LUT_ITEM(x)                                                                                             \
+    {                                                                                                                  \
+        #x, ActionID::x                                                                                                \
+    }
 
 const LutEnumStr<ActionID> action_lut = {
         ACTION_LUT_ITEM(NONE),
@@ -1387,7 +1394,10 @@ const LutEnumStr<ActionID> action_lut = {
         ACTION_LUT_ITEM(SNAP_CURSOR_VISUAL),
 };
 
-#define TOOL_LUT_ITEM(x) {#x, ToolID::x}
+#define TOOL_LUT_ITEM(x)                                                                                               \
+    {                                                                                                                  \
+        #x, ToolID::x                                                                                                  \
+    }
 
 const LutEnumStr<ToolID> tool_lut = {
         TOOL_LUT_ITEM(EDIT_SCHEMATIC_PROPERTIES),

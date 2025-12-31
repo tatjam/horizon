@@ -24,6 +24,11 @@ static const LutEnumStr<Appearance::GridFineModifier> grid_fine_mod_lut = {
         {"ctrl", Appearance::GridFineModifier::CTRL},
 };
 
+static const LutEnumStr<Appearance::MovementKeysMode> movement_keys_mode_lut = {
+        {"arrow", Appearance::MovementKeysMode::ARROW},
+        {"vi", Appearance::MovementKeysMode::VI},
+};
+
 static const LutEnumStr<Appearance::CursorSize> cursor_size_lut = {
         {"default", Appearance::CursorSize::DEFAULT},
         {"large", Appearance::CursorSize::LARGE},

@@ -222,13 +222,15 @@ CanvasPreferencesEditor::CanvasPreferencesEditor(BaseObjectType *cobject, const 
 {
 
     Gtk::RadioButton *canvas_grid_style_cross, *canvas_grid_style_dot, *canvas_grid_style_grid,
-            *canvas_grid_fine_mod_alt, *canvas_grid_fine_mod_ctrl;
+            *canvas_grid_fine_mod_alt, *canvas_grid_fine_mod_ctrl, *movement_key_mode_arrow, *movement_key_mode_vi;
     GET_WIDGET(canvas_grid_style_cross);
     GET_WIDGET(canvas_grid_style_dot);
     GET_WIDGET(canvas_grid_style_grid);
     GET_WIDGET(canvas_grid_style_grid);
     GET_WIDGET(canvas_grid_fine_mod_alt);
     GET_WIDGET(canvas_grid_fine_mod_ctrl);
+    GET_WIDGET(movement_key_mode_arrow);
+    GET_WIDGET(movement_key_mode_vi);
 
     Gtk::Scale *canvas_grid_opacity, *canvas_highlight_dim, *canvas_highlight_lighten;
     GET_WIDGET(canvas_grid_opacity);
@@ -311,6 +313,11 @@ CanvasPreferencesEditor::CanvasPreferencesEditor(BaseObjectType *cobject, const 
     std::map<Appearance::GridFineModifier, Gtk::RadioButton *> grid_fine_mod_widgets = {
             {Appearance::GridFineModifier::ALT, canvas_grid_fine_mod_alt},
             {Appearance::GridFineModifier::CTRL, canvas_grid_fine_mod_ctrl},
+    };
+
+    std::map<Appearance::MovementKeysMode, Gtk::RadioButton *> movement_key_mode_widgets = {
+            {Appearance::MovementKeysMode::ARROW, movement_key_mode_arrow},
+            {Appearance::MovementKeysMode::VI, movement_key_mode_vi},
     };
 
     auto &appearance = canvas_preferences.appearance;
