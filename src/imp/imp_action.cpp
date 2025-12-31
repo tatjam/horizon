@@ -19,6 +19,11 @@ void ImpBase::init_action()
     connect_action(ActionID::PAN_UP, sigc::mem_fun(*this, &ImpBase::handle_pan_action));
     connect_action(ActionID::PAN_DOWN, sigc::mem_fun(*this, &ImpBase::handle_pan_action));
 
+    connect_action(ActionID::MOVE_CURSOR_LEFT, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::MOVE_CURSOR_RIGHT, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::MOVE_CURSOR_UP, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::MOVE_CURSOR_DOWN, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+
     connect_action(ActionID::ZOOM_IN, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
     connect_action(ActionID::ZOOM_OUT, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
 
@@ -318,6 +323,39 @@ void ImpBase::handle_zoom_action(const ActionConnection &conn)
     else
         c = Coordf(canvas->get_width(), canvas->get_height()) / 2;
     canvas->zoom_to(c, inc);
+}
+
+void ImpBase::handle_cursor_move_action(const ActionConnection& c)
+{
+    canvas->set_cursor_external(true, false);
+
+    // We move relative to the "external" pos, not the current mouse pos
+    Coordi cursor_pos = canvas->get_cursor_pos_grid();
+
+    Coordi d;
+    switch (c.id.action) {
+    case ActionID::MOVE_CURSOR_DOWN:
+        d.y = -canvas->get_grid_spacing().y;
+        break;
+
+    case ActionID::MOVE_CURSOR_UP:
+        d.y = canvas->get_grid_spacing().y;
+        break;
+
+    case ActionID::MOVE_CURSOR_LEFT:
+        d.x = -canvas->get_grid_spacing().x;
+        break;
+
+    case ActionID::MOVE_CURSOR_RIGHT:
+        d.x = canvas->get_grid_spacing().x;
+        break;
+    default:
+        return;
+    }
+
+    cursor_pos += d;
+
+    canvas->set_cursor_pos(canvas->snap_to_grid(cursor_pos));
 }
 
 bool ImpBase::force_end_tool()

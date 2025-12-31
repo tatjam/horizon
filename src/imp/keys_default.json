@@ -2456,5 +2456,19 @@
             ]
         },
         "tool": "NONE"
+    },
+    {
+        "action": "MOVE_CURSOR_UP",
+        "keys": {
+            "255": [
+                [
+                    {
+                        "key": "k",
+                        "mod": 0
+                    }
+                ]
+            ]
+        },
+        "tool": "NONE"
     }
 ]

@@ -1161,6 +1161,58 @@ const std::map<ActionToolID, ActionCatalogItem> action_catalog = {
         {{ActionID::TOOL, ToolID::DELETE_HEIGHT_RESTRICTION},
          {"Delete height restriction", ActionGroup::BOARD, ActionCatalogItem::AVAILABLE_IN_BOARD,
           ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::MOVE_CURSOR_UP, ToolID::NONE},
+         {"Move cursor up ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::MOVE_CURSOR_UP_FINE, ToolID::NONE},
+         {"Move cursor up fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
+
+        {{ActionID::MOVE_CURSOR_DOWN, ToolID::NONE},
+         {"Move cursor down ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::MOVE_CURSOR_DOWN_FINE, ToolID::NONE},
+         {"Move cursor down fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
+
+        {{ActionID::MOVE_CURSOR_LEFT, ToolID::NONE},
+         {"Move cursor left ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::MOVE_CURSOR_LEFT_FINE, ToolID::NONE},
+         {"Move cursor left fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
+
+        {{ActionID::MOVE_CURSOR_RIGHT, ToolID::NONE},
+         {"Move cursor right ", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::MOVE_CURSOR_RIGHT_FINE, ToolID::NONE},
+         {"Move cursor right fine", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_NO_MENU | ActionCatalogItem::FLAGS_NO_POPOVER
+                  | ActionCatalogItem::FLAGS_NO_PREFERENCES}},
+
+        {{ActionID::SNAP_CURSOR_UP, ToolID::NONE},
+         {"Snap cursor up", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::SNAP_CURSOR_DOWN, ToolID::NONE},
+         {"Snap cursor down", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::SNAP_CURSOR_LEFT, ToolID::NONE},
+         {"Snap cursor left", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::SNAP_CURSOR_RIGHT, ToolID::NONE},
+         {"Snap cursor right", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
 };
 
 const std::vector<std::pair<ActionGroup, std::string>> action_group_catalog = {
@@ -1323,6 +1375,16 @@ const LutEnumStr<ActionID> action_lut = {
         ACTION_LUT_ITEM(ASSIGN_PART),
         ACTION_LUT_ITEM(TOGGLE_SNAP_TO_PAD_BBOX),
         ACTION_LUT_ITEM(SELECT_PLANE),
+        ACTION_LUT_ITEM(MOVE_CURSOR_UP),
+        ACTION_LUT_ITEM(MOVE_CURSOR_DOWN),
+        ACTION_LUT_ITEM(MOVE_CURSOR_LEFT),
+        ACTION_LUT_ITEM(MOVE_CURSOR_RIGHT),
+        ACTION_LUT_ITEM(SNAP_CURSOR_UP),
+        ACTION_LUT_ITEM(SNAP_CURSOR_DOWN),
+        ACTION_LUT_ITEM(SNAP_CURSOR_LEFT),
+        ACTION_LUT_ITEM(SNAP_CURSOR_RIGHT),
+        ACTION_LUT_ITEM(PAN_TO_CURSOR),
+        ACTION_LUT_ITEM(SNAP_CURSOR_VISUAL),
 };
 
 #define TOOL_LUT_ITEM(x) {#x, ToolID::x}
