@@ -421,7 +421,7 @@ void CanvasGL::cursor_move(GdkEvent *motion_event)
     }
 
     if (cursor_pos_grid != t) {
-        if(!cursor_blocked_in_external) {
+        if (!cursor_blocked_in_external) {
             cursor_external = false;
         }
 

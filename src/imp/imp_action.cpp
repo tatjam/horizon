@@ -325,7 +325,7 @@ void ImpBase::handle_zoom_action(const ActionConnection &conn)
     canvas->zoom_to(c, inc);
 }
 
-void ImpBase::handle_cursor_move_action(const ActionConnection& c)
+void ImpBase::handle_cursor_move_action(const ActionConnection &c)
 {
     canvas->set_cursor_external(true, false);
 

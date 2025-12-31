@@ -356,7 +356,7 @@ private:
 
     void handle_pan_action(const ActionConnection &c);
     void handle_zoom_action(const ActionConnection &c);
-    void handle_cursor_move_action(const ActionConnection& c);
+    void handle_cursor_move_action(const ActionConnection &c);
 
     std::string get_complete_display_name(const SelectableRef &sr);
 
