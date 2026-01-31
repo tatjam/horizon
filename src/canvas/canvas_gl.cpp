@@ -378,7 +378,7 @@ void CanvasGL::cursor_move(GdkEvent *motion_event)
         last_grid_div = 10;
     }
 
-    if (cursor_external && cursor_blocked_in_external) {
+    if (cursor_external && !cursor_moved_by_keyboard) {
         Coordi c(cursor_pos.x, cursor_pos.y);
         s_signal_cursor_moved.emit(c);
         return;
@@ -421,7 +421,7 @@ void CanvasGL::cursor_move(GdkEvent *motion_event)
     }
 
     if (cursor_pos_grid != t) {
-        if (!cursor_blocked_in_external) {
+        if (cursor_moved_by_keyboard) {
             cursor_external = false;
         }
 
@@ -774,19 +774,24 @@ void CanvasGL::set_cursor_pos(const Coordi &c)
 {
     if (cursor_external) {
         cursor_pos_grid = c;
+
+        if(cursor_moved_by_keyboard) {
+            s_signal_cursor_moved.emit(cursor_pos_grid);
+        }
+
         queue_draw();
     }
 }
 
-void CanvasGL::set_cursor_external(bool v, bool blocked_in_external)
+void CanvasGL::set_cursor_external(bool v, bool moved_by_keyboard)
 {
     cursor_external = v;
-    cursor_blocked_in_external = blocked_in_external;
+    cursor_moved_by_keyboard = moved_by_keyboard;
 }
 
 Coordi CanvasGL::get_cursor_pos() const
 {
-    if (cursor_external)
+    if (cursor_external && !cursor_moved_by_keyboard)
         return Coordi(cursor_pos.x, cursor_pos.y);
     else
         return cursor_pos_grid;

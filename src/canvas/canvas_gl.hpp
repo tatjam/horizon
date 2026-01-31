@@ -63,7 +63,7 @@ public:
     void set_selection(const std::set<SelectableRef> &sel, bool emit = true);
     void select_all();
     void set_cursor_pos(const Coordi &c);
-    void set_cursor_external(bool v, bool blocked_in_external = true);
+    void set_cursor_external(bool v, bool cursor_moved_by_keyboard = false);
     Coordi get_cursor_pos() const;
     Coordi get_cursor_pos_grid() const;
     Coordf get_cursor_pos_win() const;
@@ -230,7 +230,7 @@ private:
     Coord<float> cursor_pos;
     Coord<int64_t> cursor_pos_grid;
     bool cursor_external = false;
-    bool cursor_blocked_in_external = false;
+    bool cursor_moved_by_keyboard = false;
 
     GLuint renderbuffer;
     GLuint stencilrenderbuffer;
