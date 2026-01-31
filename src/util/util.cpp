@@ -549,34 +549,6 @@ std::string interpolate_text(const std::string &str,
     return out;
 }
 
-std::pair<Coordi, bool> dir_from_action(InToolActionID a)
-{
-    using I = InToolActionID;
-    switch (a) {
-    case I::MOVE_UP_FINE:
-        return {{0, 1}, true};
-    case I::MOVE_UP:
-        return {{0, 1}, false};
-
-    case I::MOVE_DOWN_FINE:
-        return {{0, -1}, true};
-    case I::MOVE_DOWN:
-        return {{0, -1}, false};
-
-    case I::MOVE_LEFT_FINE:
-        return {{-1, 0}, true};
-    case I::MOVE_LEFT:
-        return {{-1, 0}, false};
-
-    case I::MOVE_RIGHT_FINE:
-        return {{1, 0}, true};
-    case I::MOVE_RIGHT:
-        return {{1, 0}, false};
-
-    default:
-        return {{0, 0}, false};
-    }
-}
 
 void check_object_type(const json &j, ObjectType type)
 {

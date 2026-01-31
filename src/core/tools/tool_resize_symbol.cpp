@@ -111,11 +111,12 @@ ToolResponse ToolResizeSymbol::update(const ToolArgs &args)
             return ToolResponse::revert();
 
         default: {
-            const auto [dir, fine] = dir_from_action(args.action);
-            if (dir.x || dir.y) {
-                delta_key += dir * 1.25_mm;
-                update_positions(args.coords);
-            }
+            // TODO
+            // const auto [dir, fine] = dir_from_action(args.action);
+            // if (dir.x || dir.y) {
+            //     delta_key += dir * 1.25_mm;
+            //     update_positions(args.coords);
+            // }
         };
         }
     }

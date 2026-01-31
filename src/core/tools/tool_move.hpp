@@ -30,14 +30,6 @@ public:
                 I::ROTATE,
                 I::ROTATE_CURSOR,
                 I::RESTRICT,
-                I::MOVE_UP,
-                I::MOVE_DOWN,
-                I::MOVE_LEFT,
-                I::MOVE_RIGHT,
-                I::MOVE_UP_FINE,
-                I::MOVE_DOWN_FINE,
-                I::MOVE_LEFT_FINE,
-                I::MOVE_RIGHT_FINE,
         };
     }
 

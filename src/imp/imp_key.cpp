@@ -1,3 +1,5 @@
+#include "canvas/appearance.hpp"
+#include "gdk/gdkkeysyms.h"
 #include "imp.hpp"
 #include "core/tool_id.hpp"
 #include "logger/logger.hpp"
@@ -298,23 +300,34 @@ void ImpBase::apply_arrow_keys()
 {
     const auto &canvas_prefs = get_canvas_preferences();
 
-    const auto left = GDK_KEY_Left;
-    const auto right = GDK_KEY_Right;
-    const auto up = GDK_KEY_Up;
-    const auto down = GDK_KEY_Down;
+    auto left = GDK_KEY_Left;
+    auto right = GDK_KEY_Right;
+    auto up = GDK_KEY_Up;
+    auto down = GDK_KEY_Down;
+
+    switch (canvas_prefs.appearance.movement_keys_mode) {
+    case Appearance::MovementKeysMode::ARROW:
+        left = GDK_KEY_Left;
+        right = GDK_KEY_Right;
+        up = GDK_KEY_Up;
+        down = GDK_KEY_Down;
+        break;
+    case Appearance::MovementKeysMode::VI:
+        left = GDK_KEY_h;
+        right = GDK_KEY_l;
+        up = GDK_KEY_k;
+        down = GDK_KEY_j;
+        break;
+    }
 
     {
         const auto mod0 = static_cast<GdkModifierType>(0);
-        action_connections.at(ToolID::MOVE_KEY_LEFT).key_sequences = {{{left, mod0}}};
-        action_connections.at(ToolID::MOVE_KEY_RIGHT).key_sequences = {{{right, mod0}}};
-        action_connections.at(ToolID::MOVE_KEY_UP).key_sequences = {{{up, mod0}}};
-        action_connections.at(ToolID::MOVE_KEY_DOWN).key_sequences = {{{down, mod0}}};
-
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_LEFT] = {{{left, mod0}}};
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_RIGHT] = {{{right, mod0}}};
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_UP] = {{{up, mod0}}};
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_DOWN] = {{{down, mod0}}};
+        action_connections.at(ActionID::MOVE_CURSOR_LEFT).key_sequences = {{{left, mod0}}};
+        action_connections.at(ActionID::MOVE_CURSOR_RIGHT).key_sequences = {{{right, mod0}}};
+        action_connections.at(ActionID::MOVE_CURSOR_UP).key_sequences = {{{up, mod0}}};
+        action_connections.at(ActionID::MOVE_CURSOR_DOWN).key_sequences = {{{down, mod0}}};
     }
+
     {
         GdkModifierType grid_fine_modifier = GDK_MOD1_MASK;
 
@@ -326,14 +339,10 @@ void ImpBase::apply_arrow_keys()
             grid_fine_modifier = GDK_CONTROL_MASK;
             break;
         }
-        action_connections.at(ToolID::MOVE_KEY_FINE_LEFT).key_sequences = {{{left, grid_fine_modifier}}};
-        action_connections.at(ToolID::MOVE_KEY_FINE_RIGHT).key_sequences = {{{right, grid_fine_modifier}}};
-        action_connections.at(ToolID::MOVE_KEY_FINE_UP).key_sequences = {{{up, grid_fine_modifier}}};
-        action_connections.at(ToolID::MOVE_KEY_FINE_DOWN).key_sequences = {{{down, grid_fine_modifier}}};
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_LEFT_FINE] = {{{left, grid_fine_modifier}}};
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_RIGHT_FINE] = {{{right, grid_fine_modifier}}};
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_UP_FINE] = {{{up, grid_fine_modifier}}};
-        in_tool_key_sequeces_preferences.keys[InToolActionID::MOVE_DOWN_FINE] = {{{down, grid_fine_modifier}}};
+        action_connections.at(ActionID::MOVE_CURSOR_FINE_LEFT).key_sequences = {{{left, grid_fine_modifier}}};
+        action_connections.at(ActionID::MOVE_CURSOR_FINE_RIGHT).key_sequences = {{{right, grid_fine_modifier}}};
+        action_connections.at(ActionID::MOVE_CURSOR_FINE_UP).key_sequences = {{{up, grid_fine_modifier}}};
+        action_connections.at(ActionID::MOVE_CURSOR_FINE_DOWN).key_sequences = {{{down, grid_fine_modifier}}};
     }
 }
 

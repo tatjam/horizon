@@ -24,6 +24,11 @@ void ImpBase::init_action()
     connect_action(ActionID::MOVE_CURSOR_UP, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
     connect_action(ActionID::MOVE_CURSOR_DOWN, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
 
+    connect_action(ActionID::MOVE_CURSOR_FINE_LEFT, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::MOVE_CURSOR_FINE_RIGHT, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::MOVE_CURSOR_FINE_UP, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::MOVE_CURSOR_FINE_DOWN, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+
     connect_action(ActionID::ZOOM_IN, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
     connect_action(ActionID::ZOOM_OUT, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
 
@@ -327,7 +332,7 @@ void ImpBase::handle_zoom_action(const ActionConnection &conn)
 
 void ImpBase::handle_cursor_move_action(const ActionConnection &c)
 {
-    canvas->set_cursor_external(true, false);
+    canvas->set_cursor_external(true, true);
 
     // We move relative to the "external" pos, not the current mouse pos
     Coordi cursor_pos = canvas->get_cursor_pos_grid();

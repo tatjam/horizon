@@ -121,6 +121,7 @@ json CanvasPreferences::serialize() const
     j["highlight_dim"] = appearance.highlight_dim;
     j["highlight_lighten"] = appearance.highlight_lighten;
     j["grid_fine_modifier"] = grid_fine_mod_lut.lookup_reverse(appearance.grid_fine_modifier);
+    j["movement_keys_mode"] = movement_keys_mode_lut.lookup_reverse(appearance.movement_keys_mode);
     j["cursor_size"] = cursor_size_lut.lookup_reverse(appearance.cursor_size);
     j["cursor_size_tool"] = cursor_size_lut.lookup_reverse(appearance.cursor_size_tool);
     j["msaa"] = appearance.msaa;
@@ -173,6 +174,7 @@ void CanvasPreferences::load_from_json(const json &j)
     appearance.highlight_dim = j.value("highlight_dim", .3);
     appearance.highlight_lighten = j.value("highlight_lighten", .3);
     appearance.grid_fine_modifier = grid_fine_mod_lut.lookup(j.value("grid_fine_modifier", "alt"));
+    appearance.movement_keys_mode = movement_keys_mode_lut.lookup(j.value("movement_keys_mode", "arrow"));
     appearance.cursor_size = cursor_size_lut.lookup(j.value("cursor_size", "default"));
     appearance.cursor_size_tool = cursor_size_lut.lookup(j.value("cursor_size_tool", "default"));
     appearance.msaa = j.value("msaa", 0);

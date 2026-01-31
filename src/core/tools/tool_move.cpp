@@ -380,48 +380,6 @@ ToolResponse ToolMove::begin(const ToolArgs &args)
         plane->clear();
     }
 
-    InToolActionID action = InToolActionID::NONE;
-    switch (tool_id) {
-    case ToolID::MOVE_KEY_FINE_UP:
-        action = InToolActionID::MOVE_UP_FINE;
-        break;
-    case ToolID::MOVE_KEY_UP:
-        action = InToolActionID::MOVE_UP;
-        break;
-
-    case ToolID::MOVE_KEY_FINE_DOWN:
-        action = InToolActionID::MOVE_DOWN_FINE;
-        break;
-
-    case ToolID::MOVE_KEY_DOWN:
-        action = InToolActionID::MOVE_DOWN;
-        break;
-
-    case ToolID::MOVE_KEY_FINE_LEFT:
-        action = InToolActionID::MOVE_LEFT_FINE;
-        break;
-
-    case ToolID::MOVE_KEY_LEFT:
-        action = InToolActionID::MOVE_LEFT;
-        break;
-
-    case ToolID::MOVE_KEY_FINE_RIGHT:
-        action = InToolActionID::MOVE_RIGHT_FINE;
-        break;
-
-    case ToolID::MOVE_KEY_RIGHT:
-        action = InToolActionID::MOVE_RIGHT;
-        break;
-
-    default:;
-    }
-    if (action != InToolActionID::NONE) {
-        is_key = true;
-        ToolArgs args2;
-        args2.type = ToolEventType::ACTION;
-        args2.action = action;
-        update(args2);
-    }
     if (tool_id == ToolID::MOVE_KEY)
         is_key = true;
 
@@ -524,20 +482,6 @@ ToolResponse ToolMove::update(const ToolArgs &args)
         else if (any_of(args.action, {InToolActionID::ROTATE_CURSOR, InToolActionID::MIRROR_CURSOR})) {
             bool rotate = args.action == InToolActionID::ROTATE_CURSOR;
             move_mirror_or_rotate(args.coords, rotate);
-        }
-        else {
-            const auto [dir, fine] = dir_from_action(args.action);
-            if (dir.x || dir.y) {
-                auto sp = imp->get_grid_spacing();
-                auto shift = imp->transform_arrow_keys(dir * sp);
-                if (fine)
-                    shift = shift / 10;
-                key_delta += shift;
-                move_do(shift);
-                move_extra_junctions(shift);
-                update_airwires();
-                update_tip();
-            }
         }
     }
     return ToolResponse();

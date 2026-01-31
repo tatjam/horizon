@@ -13,7 +13,7 @@ public:
     {
         using I = InToolActionID;
         return {
-                I::LMB, I::CANCEL, I::RMB, I::MOVE_UP, I::MOVE_DOWN, I::MOVE_LEFT, I::MOVE_RIGHT,
+                I::LMB, I::CANCEL, I::RMB
         };
     }
 

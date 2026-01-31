@@ -324,6 +324,7 @@ CanvasPreferencesEditor::CanvasPreferencesEditor(BaseObjectType *cobject, const 
 
     bind_widget(grid_style_widgets, appearance.grid_style);
     bind_widget(grid_fine_mod_widgets, appearance.grid_fine_modifier);
+    bind_widget(movement_key_mode_widgets, appearance.movement_keys_mode);
     bind_widget(canvas_grid_opacity, appearance.grid_opacity);
     bind_widget(canvas_highlight_dim, appearance.highlight_dim);
     bind_widget(canvas_highlight_lighten, appearance.highlight_lighten);
