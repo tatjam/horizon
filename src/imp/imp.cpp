@@ -1189,9 +1189,6 @@ void ImpBase::apply_preferences()
         }
     }
     in_tool_key_sequeces_preferences = preferences.in_tool_key_sequences;
-    in_tool_key_sequeces_preferences.keys.erase(InToolActionID::LMB);
-    in_tool_key_sequeces_preferences.keys.erase(InToolActionID::RMB);
-    in_tool_key_sequeces_preferences.keys.erase(InToolActionID::LMB_RELEASE);
     apply_arrow_keys();
 
     {

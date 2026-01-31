@@ -4,8 +4,8 @@
 namespace horizon {
 
 const std::map<InToolActionID, InToolActionCatalogItem> in_tool_action_catalog = {
-        {InToolActionID::LMB, {"place", ToolID::NONE, InToolActionCatalogItem::FLAGS_NO_PREFERENCES}},
-        {InToolActionID::RMB, {"cancel", ToolID::NONE, InToolActionCatalogItem::FLAGS_NO_PREFERENCES}},
+        {InToolActionID::LMB, {"place", ToolID::NONE, InToolActionCatalogItem::FLAGS_DEFAULT}},
+        {InToolActionID::RMB, {"cancel", ToolID::NONE, InToolActionCatalogItem::FLAGS_DEFAULT}},
 
         {InToolActionID::ROTATE, {"rotate", ToolID::NONE, InToolActionCatalogItem::FLAGS_DEFAULT}},
         {InToolActionID::ROTATE_CURSOR, {"rotate around cursor", ToolID::NONE, InToolActionCatalogItem::FLAGS_DEFAULT}},
