@@ -1177,6 +1177,18 @@ const std::map<ActionToolID, ActionCatalogItem> action_catalog = {
         {{ActionID::SNAP_CURSOR_RIGHT, ToolID::NONE},
          {"Snap cursor right", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
           ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::SELECT_KB, ToolID::NONE},
+         {"Select item under crosshair / initiate drag selection", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::CANCEL_KB, ToolID::NONE},
+         {"Cancel selection", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
+
+        {{ActionID::CONTEXT_KB, ToolID::NONE},
+         {"Show context menu on crosshair", ActionGroup::VIEW, ActionCatalogItem::AVAILABLE_EVERYWHERE,
+          ActionCatalogItem::FLAGS_DEFAULT}},
 };
 
 const std::vector<std::pair<ActionGroup, std::string>> action_group_catalog = {
@@ -1352,6 +1364,9 @@ const LutEnumStr<ActionID> action_lut = {
         ACTION_LUT_ITEM(SNAP_CURSOR_RIGHT),
         ACTION_LUT_ITEM(PAN_TO_CURSOR),
         ACTION_LUT_ITEM(SNAP_CURSOR_VISUAL),
+        ACTION_LUT_ITEM(SELECT_KB),
+        ACTION_LUT_ITEM(CANCEL_KB),
+        ACTION_LUT_ITEM(CONTEXT_KB)
 };
 
 #define TOOL_LUT_ITEM(x)                                                                                               \

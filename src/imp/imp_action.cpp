@@ -29,6 +29,10 @@ void ImpBase::init_action()
     connect_action(ActionID::MOVE_CURSOR_FINE_UP, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
     connect_action(ActionID::MOVE_CURSOR_FINE_DOWN, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
 
+    connect_action(ActionID::SELECT_KB, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::CANCEL_KB, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::CONTEXT_KB, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+
     connect_action(ActionID::ZOOM_IN, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
     connect_action(ActionID::ZOOM_OUT, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
 

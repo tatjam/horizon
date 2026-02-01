@@ -150,5 +150,8 @@ enum class ActionID {
     SNAP_CURSOR_RIGHT,
     PAN_TO_CURSOR,
     SNAP_CURSOR_VISUAL,
+    SELECT_KB,
+    CANCEL_KB,
+    CONTEXT_KB,
 };
 }
