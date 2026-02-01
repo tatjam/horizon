@@ -385,7 +385,22 @@ void CanvasGL::cursor_move(GdkEvent *motion_event)
     }
 
     Coordi t = snap_to_grid(Coordi(cursor_pos.x, cursor_pos.y), last_grid_div);
+    t = update_cursor_targets(t);
 
+    if (cursor_pos_grid != t) {
+        if (cursor_moved_by_keyboard) {
+            cursor_external = false;
+        }
+
+        s_signal_cursor_moved.emit(t);
+    }
+
+    cursor_pos_grid = t;
+    queue_draw();
+}
+
+Coordi CanvasGL::update_cursor_targets(Coordi t)
+{
     const auto &f = std::find_if(targets.begin(), targets.end(), [t, this](const auto &a) -> bool {
         return a.p == t && this->layer_is_visible(a.layer) && can_snap_to_target(a);
     });
@@ -420,16 +435,7 @@ void CanvasGL::cursor_move(GdkEvent *motion_event)
         }
     }
 
-    if (cursor_pos_grid != t) {
-        if (cursor_moved_by_keyboard) {
-            cursor_external = false;
-        }
-
-        s_signal_cursor_moved.emit(t);
-    }
-
-    cursor_pos_grid = t;
-    queue_draw();
+    return t;
 }
 
 void CanvasGL::request_push()
@@ -776,6 +782,8 @@ void CanvasGL::set_cursor_pos(const Coordi &c)
         cursor_pos_grid = c;
 
         if(cursor_moved_by_keyboard) {
+            // This may snap to something, and update the cursor once more
+            cursor_pos_grid = update_cursor_targets(cursor_pos_grid);
             s_signal_cursor_moved.emit(cursor_pos_grid);
         }
 

@@ -268,6 +268,7 @@ private:
     void pan_zoom(GdkEventScroll *scroll_event, ZoomTo zoom_to, ScrollDirection scroll_direction);
     void start_smooth_zoom(const Coordf &c, float inc);
     void cursor_move(GdkEvent *motion_event);
+    Coordi update_cursor_targets(Coordi new_cursor_pos);
     void hover_prelight_update(GdkEvent *motion_event);
     bool pan_dragging = false;
     Coord<float> pan_pointer_pos_orig;

@@ -223,6 +223,7 @@ bool ImpBase::handle_action_key(const GdkEventKey *ev)
             args.work_layer = canvas->property_work_layer();
             args.type = ToolEventType::ACTION;
             args.action = in_tool_actions_matched.begin()->first;
+            args.target = canvas->get_current_target();
             ToolResponse r = core->tool_update(args);
             tool_process(r);
 
