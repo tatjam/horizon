@@ -1,10 +1,13 @@
 #include "imp.hpp"
+#include "imp/action.hpp"
 #include "widgets/action_button.hpp"
 #include "core/tool_id.hpp"
 #include "actions.hpp"
 #include "util/util.hpp"
 #include "in_tool_action_catalog.hpp"
 #include "logger/logger.hpp"
+#include <algorithm>
+#include <set>
 
 namespace horizon {
 void ImpBase::init_action()
@@ -29,9 +32,9 @@ void ImpBase::init_action()
     connect_action(ActionID::MOVE_CURSOR_FINE_UP, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
     connect_action(ActionID::MOVE_CURSOR_FINE_DOWN, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
 
-    connect_action(ActionID::SELECT_KB, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
-    connect_action(ActionID::CANCEL_KB, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
-    connect_action(ActionID::CONTEXT_KB, sigc::mem_fun(*this, &ImpBase::handle_cursor_move_action));
+    connect_action(ActionID::SELECT_KB, sigc::mem_fun(*this, &ImpBase::handle_keyboard_select_action));
+    connect_action(ActionID::CANCEL_KB, sigc::mem_fun(*this, &ImpBase::handle_keyboard_select_action));
+    connect_action(ActionID::CONTEXT_KB, sigc::mem_fun(*this, &ImpBase::handle_keyboard_select_action));
 
     connect_action(ActionID::ZOOM_IN, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
     connect_action(ActionID::ZOOM_OUT, sigc::mem_fun(*this, &ImpBase::handle_zoom_action));
@@ -365,6 +368,25 @@ void ImpBase::handle_cursor_move_action(const ActionConnection &c)
     cursor_pos += d;
 
     canvas->set_cursor_pos(canvas->snap_to_grid(cursor_pos));
+}
+
+void ImpBase::handle_keyboard_select_action(const ActionConnection &c)
+{
+    auto sel = canvas->get_selection_at(canvas->get_cursor_pos_grid());
+    auto sel_from_canvas = canvas->get_selection();
+    std::set<SelectableRef> sel_union;
+    std::set_union(sel.begin(), sel.end(), sel_from_canvas.begin(), sel_from_canvas.end(),
+                          std::inserter(sel_union, sel_union.begin()));
+
+    switch (c.id.action) {
+    case ActionID::SELECT_KB:
+        canvas->set_selection(sel_union);
+        break;
+    case ActionID::CANCEL_KB:
+        break;
+    default:
+        return;
+    }
 }
 
 bool ImpBase::force_end_tool()
